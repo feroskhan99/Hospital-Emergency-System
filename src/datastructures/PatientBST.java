@@ -64,11 +64,7 @@ public class PatientBST {
     
         return null;   // not found
     }
-}Patient p = bst.search(101);
-if (p != null) {
-    p.displayDetails();
-} else {
-    System.out.println("Patient not found.");
+
     public boolean delete(int patientId) {
         PatientNode current = root;
         PatientNode parent = root;
@@ -130,7 +126,25 @@ if (p != null) {
             }
             successor.left = current.left;
         }
-    
+
         return true;
     }
+    private PatientNode getSuccessor(PatientNode delNode) {
+        PatientNode successorParent = delNode;
+        PatientNode successor = delNode;
+        PatientNode current = delNode.right;
+
+        while (current != null) {
+            successorParent = successor;
+            successor = current;
+            current = current.left;
+    }
+
+    if (successor != delNode.right) {
+        successorParent.left = successor.right;
+        successor.right = delNode.right;
+    }
+
+    return successor;
+}
 }

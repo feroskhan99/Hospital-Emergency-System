@@ -9,6 +9,11 @@ public class TreatmentStack {
     public TreatmentStack() {
         top = null;
     }
+        public void push(TreatmentRecord record) {
+        StackNode newNode = new StackNode(record);
+        newNode.next = top;
+        top = newNode;
+    }
 
     public TreatmentRecord pop() {
         if (isEmpty()) {
