@@ -71,7 +71,7 @@ public class PatientBST {
         boolean isLeftChild = false;
     
         // Step 1: find the node to delete
-        while (current.patient.getPatientId() != patientId) {
+        while (current != null && current.patient.getPatientId() != patientId) {
             parent = current;
             if (patientId < current.patient.getPatientId()) {
                 isLeftChild = true;
@@ -80,10 +80,11 @@ public class PatientBST {
                 isLeftChild = false;
                 current = current.right;
             }
-            if (current == null) {
-                return false;   // not found
-            }
         }
+
+        if (current == null) {
+        return false;   // not found
+    }
     
         // Step 2: Case 1 - node has no children
         if (current.left == null && current.right == null) {
